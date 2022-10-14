@@ -1,0 +1,15 @@
+.cheatCard {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /*height: 42vh;*/
+    color: white;
+    line-height: 21px;
+    /*background: radial-gradient(#1fe4f5, #3fbafe);*/
+}
+
+.cheatCard span {
+    color: #929fff;
+    font-family: fantasy;
+    font-weight: bolder;
+}
