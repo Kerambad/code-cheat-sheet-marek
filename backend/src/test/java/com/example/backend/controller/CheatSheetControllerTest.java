@@ -17,8 +17,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -99,5 +101,14 @@ class CheatSheetControllerTest {
                 .content(postJSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJSON));
+    }
+
+    @Test
+    void deleteCommand_ShouldReturnTrue_IfCommandDeletedSuccessfully() throws Exception {
+        //GIVEN
+        repo.save(new CheatSheet("1", "test", "test", "test", "test"));
+        //WHEN
+        mvc.perform(delete("api/cheatsheat/1"))
+                .andExpect(status().isOk());
     }
 }

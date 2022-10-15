@@ -7,6 +7,8 @@ import {useState} from "react";
 type CheatGalleryProps = {
     commands: CheatSheet[]
     addCommand: (toAdd: CheatSheet) => void
+    delete: (id:string) => void
+
 }
 
 export default function CheatGallery(props: CheatGalleryProps){
@@ -29,7 +31,7 @@ export default function CheatGallery(props: CheatGalleryProps){
             <div className={"cards"}>
                 {filteredCharacters.map((command) =>
                 <div className={"card"}>
-                <CheatCard cheat={command}/>
+                <CheatCard cheat={command} delete={props.delete}/>
                 </div>)}
             </div>
 

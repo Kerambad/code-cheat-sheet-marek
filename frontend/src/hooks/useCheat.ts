@@ -27,6 +27,10 @@ export default function useCheat() {
             .then(getAllCommand)
             .catch(() => console.error())
     }
+    const deleteCommand = (id: string) => {
+        axios.delete("api/cheatsheet/" + id)
+            .then(getAllCommand)
+    }
 
-    return {cheat, addCommand}
+    return {cheat, addCommand, deleteCommand}
 }

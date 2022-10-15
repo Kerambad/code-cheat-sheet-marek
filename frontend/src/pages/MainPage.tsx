@@ -7,6 +7,7 @@ import "./MainPage.css"
 type CheatGalleryProps = {
     commands: CheatSheet[]
     addCommand: (toAdd: CheatSheet) => void
+    delete: (id:string) => void
 }
 
 export default function MainPage(props: CheatGalleryProps) {
@@ -15,7 +16,7 @@ export default function MainPage(props: CheatGalleryProps) {
         <>
             <main><span><p className={"h1-header"}>Everything is possible</p></span></main>
             <div></div>
-            <CheatGallery commands={props.commands} addCommand={props.addCommand}></CheatGallery>
+            <CheatGallery commands={props.commands} addCommand={props.addCommand} delete={props.delete}></CheatGallery>
         </>
     )
 }

@@ -25,8 +25,12 @@ public class CheatSheetController {
     }
 
     @PostMapping
-    CheatSheet postCommand(@RequestBody CheatSheet postCheat){
+    public CheatSheet postCommand(@RequestBody CheatSheet postCheat){
         return service.postCommand(postCheat);
 
+    }
+    @DeleteMapping ("{id}")
+    public Boolean deleteCommand(@PathVariable String id) {
+        return service.deleteCommand(id);
     }
 }

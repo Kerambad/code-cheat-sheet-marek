@@ -36,6 +36,14 @@ public class CheatSheetService {
 
         return repo.save(newCheatSheet);
     }
+
+    public Boolean deleteCommand(String id) {
+        if (repo.existsById(id)) {
+            repo.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }
 
 

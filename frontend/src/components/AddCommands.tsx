@@ -1,6 +1,7 @@
 import {CheatSheet} from "../model/CheatSheet";
 import {useState} from "react";
 import "./AddCommands.css"
+import TypeDropdown from "./TypeDropdown";
 
 type AddCommandsProps = {
     addCommand: (toAdd: CheatSheet) => void
@@ -46,8 +47,8 @@ export default function AddCommands(props: AddCommandsProps) {
             />
 
             <label>
-                <select className={"input-style"} defaultValue={""}>
-                    <option value={""} disabled={true} >Select Catagory</option>
+                <select className={"input-style"}>
+                    <option value={""}  >Select Catagory</option>
                     <option value={"Java"} onClick={
                         (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
                         Java
@@ -86,6 +87,8 @@ export default function AddCommands(props: AddCommandsProps) {
                     </option>
                 </select>
             </label>
+
+            <TypeDropdown type={(type) => setCommand((old) => ({...old, category: type}))}/>
 
             <textarea
                 placeholder={"Description"}
