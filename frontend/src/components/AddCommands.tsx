@@ -46,49 +46,7 @@ export default function AddCommands(props: AddCommandsProps) {
                 name={"command"}
             />
 
-            <label>
-                <select className={"input-style"}>
-                    <option value={""}  >Select Catagory</option>
-                    <option value={"Java"} onClick={
-                        (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
-                        Java
-                    </option>
-                    <option value={"JavaScript"} onClick={
-                        (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
-                        JavaScript
-                    </option>
-                    <option value={"zsh-console"} onClick={
-                        (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
-                        zsh-console
-                    </option>
-                    <option value={"css"} onClick={
-                        (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
-                        CSS
-                    </option>
-                    <option value={"react"} onClick={
-                        (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
-                        React
-                    </option>
-                    <option value={"html"} onClick={
-                        (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
-                        HTML
-                    </option>
-                    <option value={"axios"} onClick={
-                        (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
-                        Axios
-                    </option>
-                    <option value={"mavenplugins"} onClick={
-                        (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
-                        Maven Plugins
-                    </option>
-                    <option value={"docker"} onClick={
-                        (value:any) => setCommand((old) => ({...old, category: value.target.value}))} >
-                        Docker
-                    </option>
-                </select>
-            </label>
-
-            <TypeDropdown type={(type) => setCommand((old) => ({...old, category: type}))}/>
+            <TypeDropdown showAllSelector={false} type={(type) => setCommand((old) => ({...old, category: type}))}/>
 
             <textarea
                 placeholder={"Description"}

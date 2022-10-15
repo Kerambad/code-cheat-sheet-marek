@@ -3,36 +3,61 @@ import CheatCard from "./CheatCard";
 import AddCommands from "./AddCommands";
 import "./CheatGallery.css"
 import {useState} from "react";
+import TypeDropdown from "./TypeDropdown";
 
 type CheatGalleryProps = {
     commands: CheatSheet[]
     addCommand: (toAdd: CheatSheet) => void
-    delete: (id:string) => void
+    delete: (id: string) => void
 
 }
 
-export default function CheatGallery(props: CheatGalleryProps){
+export default function CheatGallery(props: CheatGalleryProps) {
 
-    //const outputCard = props.commands.map((command) => <CheatCard cheat={command} key={command.id}/>)
 
     const [search, setSearch] = useState("");
-    const filteredCharacters = props.commands.filter((command) => command.name.toLowerCase().includes(search.toLowerCase()))
+    const [searchType, setSearchType] = useState("");
 
-    return(
+    const filteredCharacters = props.commands.filter((command) => {
+        return (command.name.toLowerCase().includes(search.toLowerCase())
+                || command.command.toLowerCase().includes(search.toLowerCase())
+                || command.description.toLowerCase().includes(search.toLowerCase()))
+            && command.category.includes(searchType)
+    })
+
+    return (
         <>
+            {/*field for adding new Commands*/}
             <AddCommands addCommand={props.addCommand}/>
 
-            <>
-                <form>
-                    <input className={"input-style"} type={"text"} placeholder={"Search"} onChange={(event) => setSearch(event.target.value)}/>
-                </form>
-            </>
+            {/*input for filter existing commands*/}
+            <div className={"filter"}>
+                <input className={"input-style"}
+                       type={"text"}
+                       placeholder={"Search"}
+                       onChange={(event) => setSearch(event.target.value)}
+                       value={search}
+                />
+                <TypeDropdown showAllSelector={true} type={(type) => setSearchType(type)}/>
+                <button
+                    onClick={() => {
+                        setSearchType("");
+                        setSearch("");
+                    }}
+                >
+                    Filter zurücksetzen
+                </button>
+            </div>
 
+            {/*display of the cards*/}
             <div className={"cards"}>
-                {filteredCharacters.map((command) =>
-                <div className={"card"}>
-                <CheatCard cheat={command} delete={props.delete}/>
-                </div>)}
+                {filteredCharacters.map((command) => {
+                    return <div className={"card"} key={command.id}>
+
+                        <CheatCard cheat={command} delete={props.delete}/>
+
+                    </div>
+                })}
             </div>
 
         </>

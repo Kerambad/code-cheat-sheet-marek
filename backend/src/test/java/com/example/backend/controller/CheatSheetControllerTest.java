@@ -108,7 +108,8 @@ class CheatSheetControllerTest {
         //GIVEN
         repo.save(new CheatSheet("1", "test", "test", "test", "test"));
         //WHEN
-        mvc.perform(delete("api/cheatsheat/1"))
-                .andExpect(status().isOk());
+        mvc.perform(delete("/api/cheatsheet/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("true"));
     }
 }

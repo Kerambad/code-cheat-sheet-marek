@@ -1,69 +1,31 @@
 
 type TypeDropdownProps = {
     type: (selected:string) => void
+    showAllSelector: boolean
 }
 export default function TypeDropdown(props: TypeDropdownProps) {
     return (
         <label>
-            <select className={"input-style"} defaultValue={""}>
-                <option value={""} disabled={true}>Select Catagory</option>
-                <option
-                    value={"Java"}
-                    onClick={(value: any) => props.type(value.target.value)}
-                >
-                    Java
-                </option>
-                <option
-                    value={"JavaScript"}
-                    onClick={(value: any) => props.type(value.target.value)}
-                >
-                    JavaScript
-                </option>
-                <option
-                    value={"zsh-console"}
-                    onClick={(value: any) => props.type(value.target.value)}
-                >
-                    zsh-console
-                </option>
-                <option
-                    value={"css"}
-                    onSelect={(value: any) => props.type(value.target.value)}
-                >
-                    CSS
-                </option>
-                <option
-                    value={"react"}
-                    onClick={(value: any) => {
-                        props.type(value.target.value)
-                        console.log(value.target.value);
-                    }}
-                >
-                    React
-                </option>
-                <option
-                    value={"html"}
-                    onClick={(value: any) => props.type(value.target.value)}
-                >
-                    HTML
-                </option>
-                <option
-                    value={"axios"}
-                    onClick={(value: any) => props.type(value.target.value)}
-                >
-                    Axios
-                </option>
-                <option
-                    value={"mavenplugins"}
-                    onClick={(value: any) => props.type(value.target.value)}
-                >
-                    Maven Plugins
-                </option>
-                <option
-                    value={"docker"}
-                    onClick={(value: any) => props.type(value.target.value)}
-                >
-                    Docker
-                </option>
+            <select
+                className={"input-style"}
+                onChange={(value) => {
+                    props.type(value.target.value)
+                }}
+                defaultValue={""}
+            >
+
+                {props.showAllSelector || <option value={""} disabled={true}>Select Catagory</option>}
+                {props.showAllSelector && <option value={""}>Alle</option>}
+                <option value={"Java"}>Java</option>
+                <option value={"JavaScript"}>JavaScript</option>
+                <option value={"zsh-console"}>zsh-console</option>
+                <option value={"css"}>CSS</option>
+                <option value={"react"}>React</option>
+                <option value={"html"}>HTML</option>
+                <option value={"axios"}>Axios</option>
+                <option value={"mavenplugins"}>Maven Plugins</option>
+                <option value={"docker"}>Docker</option>
+
             </select>
         </label>
     )

@@ -52,7 +52,6 @@ class CheatSheetServiceTest {
     void deleteCommand_ShouldReturnTrue_IfCommandDeletedSucessfully () {
         //GIVEN
         when(repo.existsById("1")).thenReturn(true);
-        String idToDelete = "1";
         //WHEN
         Boolean actual = service.deleteCommand("1");
         //THEN
